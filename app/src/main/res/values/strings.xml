@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">AnupomRoy_COMP304_Assignment5</string>
+
+    <!--Main Activity -->
+    <string name="headingOne"> Chose a Desire Brand </string>
+
+    <string name="honda">Honda</string>
+    <string name="chevrolet">Chevrolet</string>
+    <string name="ford">Ford</string>
+    <string name="nissan">Nissan</string>
+    <string name="toyota">Toyota</string>
+    <string-array name="brand">
+        <item>@string/chevrolet</item>
+        <item>@string/ford</item>
+        <item>@string/honda</item>
+        <item>@string/nissan</item>
+        <item>@string/toyota</item>
+    </string-array>
+
+    <!--Showrooms Activity -->
+
+    <!--LBS Activity -->
+
+
 </resources>
