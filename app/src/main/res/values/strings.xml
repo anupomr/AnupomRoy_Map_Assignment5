@@ -18,7 +18,8 @@
     </string-array>
 
     <!--Showrooms Activity -->
-
+    <string name="headingShowroom"> Chose a Location </string>
+    <string name="title_activity_maps">Map</string>
     <!--LBS Activity -->
 
 
