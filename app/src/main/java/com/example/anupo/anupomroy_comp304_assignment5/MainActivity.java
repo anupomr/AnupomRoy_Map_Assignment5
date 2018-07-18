@@ -6,15 +6,20 @@ package com.example.anupo.anupomroy_comp304_assignment5;
  * Professor:Vinayagathas Vaithilingam
  * Lab:     LabAssignment 5
  * */
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
+    BitmapDrawable imageViewIcon;
     //declare an array
     String []brandArray;
 
@@ -33,32 +38,36 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent showroomIntent=null;
+                Intent showroomIntent=showroomIntent=new Intent(MainActivity.this,ShowroomsActivity.class);
+                SharedPreferences sharedPref=getSharedPreferences("logoInfo", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor=sharedPref.edit();
+                //imageViewIcon=getResources().getDimension(R.drawable.honda);
                 switch (position)
                 {
                     case 0:
-                        showroomIntent=new Intent(MainActivity.this,ShowroomsActivity.class);
+                        editor.putString("brand","chevrolet");
                         showroomIntent.putExtra("name","chevrolet");
                         break;
                     case 1:
-                        showroomIntent=new Intent(MainActivity.this,ShowroomsActivity.class);
+                        editor.putString("brand","ford");
                         showroomIntent.putExtra("name","ford");
                         break;
                     case 2:
-                        showroomIntent=new Intent(MainActivity.this,ShowroomsActivity.class);
+                        editor.putString("brand","honda");
                         showroomIntent.putExtra("name","honda");
                         break;
                     case 3:
-                        showroomIntent=new Intent(MainActivity.this,ShowroomsActivity.class);
+                        editor.putString("brand","nissan");
                         showroomIntent.putExtra("name","nissan");
                         break;
                     case 4:
-                        showroomIntent=new Intent(MainActivity.this,ShowroomsActivity.class);
+                        editor.putString("brand","toyota");
                         showroomIntent.putExtra("name","toyota");
                         break;
 
                 }
                 startActivity(showroomIntent);
+                editor.apply();
             }
         });
     }

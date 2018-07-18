@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 public class ShowroomsActivity extends AppCompatActivity {
     ListView listView;
+    Intent mapIntent=null;
     //declare an array
     String [] hondaArray={"Scarborough","Downtown","Markham","DonMills"};
     String []toyotaArray={"Scarborough","Etobicoke","Markham","DonMills"};
@@ -25,13 +26,28 @@ public class ShowroomsActivity extends AppCompatActivity {
             listView=(ListView)findViewById(R.id.showroomListView);
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, hondaArray);
             listView.setAdapter(arrayAdapter);
+
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     switch (position) {
                         case 0:
-                            startActivity(new Intent(ShowroomsActivity.this,MapsActivity.class));
+                            mapIntent=new Intent(ShowroomsActivity.this,MapsActivity.class);
+                            mapIntent.putExtra("name","Roadsport_Honda");
+                            mapIntent.putExtra("lat",43.766704);
+                            mapIntent.putExtra("lng",-79.279696);
+                            startActivity(mapIntent);
+
                             break;
+                        case 1:
+                            mapIntent=new Intent(ShowroomsActivity.this,MapsActivity.class);
+                            mapIntent.putExtra("name","Honda_Downtown");
+                            mapIntent.putExtra("lat",43.652940);
+                            mapIntent.putExtra("lng",-79.359111);
+                            startActivity(mapIntent);
+
+                            break;
+
                     }
 
                 }
@@ -41,6 +57,30 @@ public class ShowroomsActivity extends AppCompatActivity {
             listView=(ListView)findViewById(R.id.showroomListView);
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, toyotaArray);
             listView.setAdapter(arrayAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    switch (position) {
+                        case 0:
+                            mapIntent=new Intent(ShowroomsActivity.this,MapsActivity.class);
+                            mapIntent.putExtra("name","Scarborough_Toyota");
+                            mapIntent.putExtra("lat",43.725238);
+                            mapIntent.putExtra("lng",-79.294616);
+                            startActivity(mapIntent);
+
+                            break;
+                        case 1:
+                            mapIntent=new Intent(ShowroomsActivity.this,MapsActivity.class);
+                            mapIntent.putExtra("name","Woodbine_Toyota");
+                            mapIntent.putExtra("lat",43.713944);
+                            mapIntent.putExtra("lng",-79.592965);
+                            startActivity(mapIntent);
+
+                            break;
+
+                    }
+                }
+            });
         }
     }
 }

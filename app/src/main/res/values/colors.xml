@@ -6,4 +6,5 @@
 
     <color name="dark">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="window_bg_color">#7bc6df</color>
 </resources>
