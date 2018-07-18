@@ -18,6 +18,7 @@
             android:id="@+id/imgView"
             android:layout_width="120px"
             android:layout_height="120px"
+
             />
 
         <!--ImageButton

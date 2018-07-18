@@ -27,8 +27,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //
     private GoogleMap mMap;
     Bitmap bitmap;
-    SharedPreferences sharePref=getSharedPreferences("logoInfo", Context.MODE_PRIVATE );
-    String brandName=sharePref.getString("brand","");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +55,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         String name=getIntent().getStringExtra("name");
+
         if (name.equals("Roadsport_Honda"))
         {
             LatLng hondaScarborough = new LatLng(43.766704, -79.279696);
@@ -72,6 +72,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.moveCamera(CameraUpdateFactory.newLatLng(hondaDowntown));
             mMap.moveCamera(CameraUpdateFactory.zoomTo(10.2f));
         }
+
+
         //For Toyota location View
         else if (name.equals("Scarborough_Toyota"))
         {
@@ -98,16 +100,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public View getInfoWindow(Marker marker) {
         View view=getLayoutInflater().inflate(R.layout.custom_window,null);
-
+        SharedPreferences sharePref=getSharedPreferences("logoInfo", Context.MODE_PRIVATE );
+        String brandName=sharePref.getString("brand","");
         TextView titl=(TextView) view.findViewById(R.id.txtTitle);
         TextView snip=(TextView) view.findViewById(R.id.txtSnipped);
         ImageView imageView=(ImageView)view.findViewById(R.id.imgView);
-        //imageView.setImageResource(R.drawable.toyota);
-        //ImageButton imgBtn=(ImageButton) view.findViewById(R.id.imageButton);
-        if(brandName.equals("Woodbine_Toyota"))
-        {
 
+        //ImageButton imgBtn=(ImageButton) view.findViewById(R.id.imageButton);
+        if(brandName.equals("toyota"))
+        {
+        imageView.setImageResource(R.drawable.toyota);
         }
+        else if(brandName.equals("honda"))
+        {
+            imageView.setImageResource(R.drawable.honda);
+        }else{}
 
         //imgBtn.setImageDrawable(marker.);
         titl.setText(marker.getTitle().toString());
