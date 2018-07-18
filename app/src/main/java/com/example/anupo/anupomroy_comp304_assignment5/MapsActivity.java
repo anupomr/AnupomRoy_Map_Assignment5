@@ -1,5 +1,11 @@
 package com.example.anupo.anupomroy_comp304_assignment5;
-
+/*
+ * Author:  Anupom Roy
+ * Subject: Mobile Application Development
+ * date:    July 16, 2018
+ * Professor:Vinayagathas Vaithilingam
+ * Lab:     LabAssignment 5
+ * */
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -24,11 +30,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.InfoWindowAdapter {
-//
+
     private GoogleMap mMap;
-    Bitmap bitmap;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +55,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-
         String name=getIntent().getStringExtra("name");
-
         if (name.equals("Roadsport_Honda"))
         {
             LatLng hondaScarborough = new LatLng(43.766704, -79.279696);
@@ -72,7 +72,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.moveCamera(CameraUpdateFactory.newLatLng(hondaDowntown));
             mMap.moveCamera(CameraUpdateFactory.zoomTo(10.2f));
         }
-
 
         //For Toyota location View
         else if (name.equals("Scarborough_Toyota"))
@@ -92,8 +91,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.moveCamera(CameraUpdateFactory.zoomTo(10.2f));
         }
         else{}
-
-        //http://www.zoftino.com/google-maps-android-custom-info-window-example
         mMap.setInfoWindowAdapter(this) ;
     }
 
@@ -105,8 +102,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         TextView titl=(TextView) view.findViewById(R.id.txtTitle);
         TextView snip=(TextView) view.findViewById(R.id.txtSnipped);
         ImageView imageView=(ImageView)view.findViewById(R.id.imgView);
-
-        //ImageButton imgBtn=(ImageButton) view.findViewById(R.id.imageButton);
         if(brandName.equals("toyota"))
         {
         imageView.setImageResource(R.drawable.toyota);
@@ -114,9 +109,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         else if(brandName.equals("honda"))
         {
             imageView.setImageResource(R.drawable.honda);
-        }else{}
+        }
+        else{
+            imageView.setImageResource(R.drawable.icon);
+        }
 
-        //imgBtn.setImageDrawable(marker.);
         titl.setText(marker.getTitle().toString());
         snip.setText(marker.getSnippet().toString());
         return view;
@@ -125,5 +122,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public View getInfoContents(Marker marker) {
       return null;
+    }
+    public void onChangeView(View view) //changes the map type
+    {
+        //it will takes to satellite view
+        if(mMap.getMapType() == GoogleMap.MAP_TYPE_NORMAL)
+        {
+            mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        }
+        else
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+    }
+
+    public void onZoom(View view)
+    {
+        if(view.getId() == R.id.btnZoomIn)
+        {
+            mMap.animateCamera(CameraUpdateFactory.zoomIn());
+        }
+        if(view.getId() == R.id.btnZoomOut)
+        {
+            mMap.animateCamera(CameraUpdateFactory.zoomOut());
+        }
     }
 }
